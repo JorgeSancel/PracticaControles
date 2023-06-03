@@ -1,42 +1,37 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Video Pracitce</title>
+    <link rel="stylesheet" type="text/css" href="styles.css">
 </head>
 <body>
-    
-    <button onclick="playPause()">Play/Pause</button>
-    <button onclick="reload()">Reload</button>
-    <button onclick="makeLarge()">Large</button>
-    <button onclick="makeSmall()">Small</button>
-    <button onclick="makeNormal()">Normal</button>
-    <video id="videoPlayer" width="520" controls autoplay>
-        <source src="videoplayback.mp4" type="video/mp4">
-    </video>
-    <script> 
-        let video = document.getElementById("videoPlayer");
-        function playPause() { 
-            if (video.paused) 
-                video.play(); 
-            else 
-                video.pause(); 
-        }
-        function reload() { 
-           video.load(); 
-        }
-        function makeLarge() { 
-            video.width = 1000; 
-        }
-        function makeSmall() { 
-            video.width = 250; 
-        } 
-        function makeNormal() { 
-            video.width = 500; 
-        } 
-        </script>
-        
+    <div class="video-container">
+        <video id="myVideo" controls>
+            <source src="videoplayback.mp4" type="video/mp4">
+            Your browser does not support the video tag.
+        </video>
+    </div>
+    <div class="controls">
+        <button id="playButton">Play</button>
+        <button id="reloadButton">Reload</button>
+    </div>
+    <script>
+        const video = document.getElementById("myVideo");
+        const playButton = document.getElementById("playButton");
+        const reloadButton = document.getElementById("reloadButton");
+
+playButton.addEventListener("click", () => {
+    if (video.paused) {
+        video.play();
+        playButton.innerText = "Pause";
+    } else {
+        video.pause();
+        playButton.innerText = "Play";
+    }
+});
+reloadButton.addEventListener("click", () => {
+    video.currentTime = 0;
+    video.play();
+});
+    </script>
 </body>
 </html>
